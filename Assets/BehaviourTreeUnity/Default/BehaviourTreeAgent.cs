@@ -11,7 +11,12 @@ namespace AITools
     public class BehaviourTreeAgent : MonoBehaviour
     {
         public BehaviourTree tree;
-        Dictionary<string,object> parameters;
+
+        public Dictionary<string, GameObject> gameObjectParameters = null;
+        public Dictionary<string,float> floatParameters = null;
+        public Dictionary<string,int> integerParameters = null;
+        public Dictionary<string,bool> boolParameters = null;
+
         [HideInInspector]
         public List<BehaviourTreeNodeState> nodes;
         private GameObject sceneSelected;
@@ -22,7 +27,28 @@ namespace AITools
         // Use this for initialization
         void Start()
         {
-            
+            gameObjectParameters = new Dictionary<string, GameObject>();
+            floatParameters = new Dictionary<string, float>();
+            integerParameters = new Dictionary<string, int>();
+            boolParameters = new Dictionary<string, bool>();
+
+            foreach(string parameter in tree.gameObjectParameters)
+            {
+                gameObjectParameters.Add(parameter, null);
+            }
+            foreach (string parameter in tree.floatParameters)
+            {
+                floatParameters.Add(parameter, 0.0f);
+            }
+            foreach (string parameter in tree.integerParameters)
+            {
+                integerParameters.Add(parameter, 0);
+            }
+            foreach (string parameter in tree.boolParameters)
+            {
+               boolParameters.Add(parameter, false);
+            }
+
             nodes = new List<BehaviourTreeNodeState>();
             states = new Dictionary<Vector2, BehaviourTreeNodeState>();
             if(tree == null)

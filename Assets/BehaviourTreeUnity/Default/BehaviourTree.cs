@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework;
 using NodeEditorFramework.Standard;
-using UnityEditor;
 
 namespace AITools
 {
@@ -13,7 +12,11 @@ namespace AITools
         public static BehaviourTreeAgent selectedAgent;
 
         public override string canvasName { get { return "Behaviour Tree"; } }
-        public bool refreshCache = false;
+
+        public List<string> gameObjectParameters;
+        public List<string> floatParameters;
+        public List<string> integerParameters;
+        public List<string> boolParameters;
 
         protected override void OnCreate()
         {
