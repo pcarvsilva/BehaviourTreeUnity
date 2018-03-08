@@ -14,7 +14,6 @@ namespace AITools
         public override string GetID { get { return ID; } }
 
         public override string Title { get { return "Leaf Node"; } }
-        public override Vector2 DefaultSize { get { return new Vector2(150, 60); } }
 
         [HideInInspector]
         [ConnectionKnob("Input", Direction.In, "Flow")]
@@ -33,14 +32,7 @@ namespace AITools
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
 
-            GUILayout.BeginHorizontal();
-            GUILayout.BeginVertical();
-
-            Editor.CreateEditor(this).DrawDefaultInspector();
-
-
-            GUILayout.EndVertical();
-            GUILayout.EndHorizontal();
+            base.NodeGUI();
 
         }
 

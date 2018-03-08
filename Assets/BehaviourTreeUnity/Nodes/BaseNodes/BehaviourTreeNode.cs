@@ -3,7 +3,7 @@ using NodeEditorFramework;
 using System.Collections;
 using System.Linq;
 using UnityEditor;
-
+using System.Collections.Generic;
 
 namespace AITools
 {
@@ -14,6 +14,10 @@ namespace AITools
 
 
         public Coroutine stopNode;
+
+        public override bool AutoLayout { get { return true; } }
+        public override Vector2 MinSize { get { return new Vector2(200, 10); } }
+
 
         protected Color BackgroundColor
         {
@@ -54,6 +58,18 @@ namespace AITools
             }
         }
 
+        public override void NodeGUI()
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.BeginVertical();
+
+            Editor e = Editor.CreateEditor(this);
+            e.DrawDefaultInspector();
+
+            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+
+        }
 
         protected internal override void DrawNode()
         {

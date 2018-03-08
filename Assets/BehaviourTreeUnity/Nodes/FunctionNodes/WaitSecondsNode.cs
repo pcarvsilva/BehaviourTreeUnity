@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NodeEditorFramework;
-using UnityEditor;
 
 namespace AITools
 {

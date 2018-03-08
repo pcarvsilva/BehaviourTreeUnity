@@ -24,6 +24,11 @@ namespace AITools
 
         public Dictionary<Vector2, BehaviourTreeNodeState> states;
 
+        public void SendParameter(string parameter,GameObject gameObject)
+        {
+           gameObjectParameters[parameter] = gameObject;
+        }
+
         // Use this for initialization
         void Start()
         {
