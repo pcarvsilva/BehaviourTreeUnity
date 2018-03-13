@@ -16,6 +16,7 @@ namespace AITools
         public Dictionary<string,float> floatParameters = null;
         public Dictionary<string,int> integerParameters = null;
         public Dictionary<string,bool> boolParameters = null;
+        public Dictionary<string, Vector3> vector3Parameters = null;
 
         [HideInInspector]
         public List<BehaviourTreeNodeState> nodes;
@@ -36,8 +37,9 @@ namespace AITools
             floatParameters = new Dictionary<string, float>();
             integerParameters = new Dictionary<string, int>();
             boolParameters = new Dictionary<string, bool>();
+            vector3Parameters = new Dictionary<string, Vector3>();
 
-            foreach(string parameter in tree.gameObjectParameters)
+            foreach (string parameter in tree.gameObjectParameters)
             {
                 gameObjectParameters.Add(parameter, null);
             }
@@ -52,6 +54,10 @@ namespace AITools
             foreach (string parameter in tree.boolParameters)
             {
                boolParameters.Add(parameter, false);
+            }
+            foreach (string parameter in tree.vector3Parameters)
+            {
+                vector3Parameters.Add(parameter,new Vector3());
             }
 
             nodes = new List<BehaviourTreeNodeState>();

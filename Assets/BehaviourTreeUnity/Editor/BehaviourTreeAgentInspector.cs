@@ -11,6 +11,7 @@ namespace AITools
         bool floatFold;
         bool integerFold;
         bool boolFold;
+        bool vectorFold;
 
         public override void OnInspectorGUI()
         {
@@ -73,6 +74,21 @@ namespace AITools
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField(key);
                         agent.boolParameters[key] = EditorGUILayout.Toggle(agent.boolParameters[key]);
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+            }
+
+            if (agent.vector3Parameters != null)
+            {
+                vectorFold = EditorGUILayout.Foldout(vectorFold, "Vectors");
+                List<string> keys = new List<string>(agent.vector3Parameters.Keys);
+                if (vectorFold)
+                {
+                    foreach (string key in keys)
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        agent.vector3Parameters[key] = EditorGUILayout.Vector3Field(key,agent.vector3Parameters[key]);
                         EditorGUILayout.EndHorizontal();
                     }
                 }

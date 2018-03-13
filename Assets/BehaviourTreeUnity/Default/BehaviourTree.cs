@@ -17,6 +17,7 @@ namespace AITools
         public List<string> floatParameters;
         public List<string> integerParameters;
         public List<string> boolParameters;
+        public List<string> vector3Parameters;
 
         protected override void OnCreate()
         {
