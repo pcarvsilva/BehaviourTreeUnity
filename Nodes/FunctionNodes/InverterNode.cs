@@ -9,7 +9,7 @@ namespace AITools
     public class InverterNode : DecoratorNode
     {
 
-        public const string ID = "inverterNode";
+        public new const string ID = "inverterNode";
         public override string GetID { get { return ID; } }
 
         public override string Title { get { return "Inverter Node"; } }

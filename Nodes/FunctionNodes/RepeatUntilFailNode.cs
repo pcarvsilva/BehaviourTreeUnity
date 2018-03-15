@@ -9,7 +9,7 @@ namespace AITools
     public class RepeatUntilFailNode : DecoratorNode
     {
 
-        public const string ID = "repeatUntilFailNode";
+        public new const string ID = "repeatUntilFailNode";
         public override string GetID { get { return ID; } }
 
         public override string Title { get { return "Repeat Until Fail Node"; } }

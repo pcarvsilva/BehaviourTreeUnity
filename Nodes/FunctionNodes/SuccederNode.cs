@@ -9,7 +9,7 @@ namespace AITools
     public class SuccederNode : DecoratorNode
     {
 
-        public const string ID = "succederNode";
+        public new const string ID = "succederNode";
         public override string GetID { get { return ID; } }
 
         public override string Title { get { return "Succeder Node"; } }

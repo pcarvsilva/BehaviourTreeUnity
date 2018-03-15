@@ -71,7 +71,7 @@ namespace AITools
 
         }
 
-        protected internal override void DrawNode()
+        protected override void DrawNode()
         {
             backgroundColor = BackgroundColor;
             base.DrawNode();
@@ -87,7 +87,6 @@ namespace AITools
             }
             state.actualCondition = processCondition.Running;
             yield return parentState.agent.StartCoroutine(process(parentState.agent));
-            yield return new WaitForSeconds(0.3f);
             parentState.agent.StartCoroutine(refreshNode(state));
            
         }

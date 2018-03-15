@@ -26,10 +26,8 @@ namespace AITools
 
         public Dictionary<Vector2, BehaviourTreeNodeState> states;
 
-        public void SendParameter(string parameter,GameObject gameObject)
-        {
-           gameObjectParameters[parameter] = gameObject;
-        }
+        private Coroutine coroutine;
+
 
         // Use this for initialization
         void Awake()
@@ -65,16 +63,19 @@ namespace AITools
             {
                 listParameters.Add(parameter, null);
             }
+        }
 
+        void Start()
+        {
             nodes = new List<BehaviourTreeNodeState>();
             states = new Dictionary<Vector2, BehaviourTreeNodeState>();
-            if(tree == null)
+            if (tree == null)
             {
                 throw new MissingReferenceException(name + " has no Behaviour Tree");
             }
-            foreach(Node node in tree.nodes)
+            tree.Validate();
+            foreach (Node node in tree.nodes)
             {
-                ConnectionPortManager.UpdateConnectionPorts(node);
                 BehaviourTreeNodeState state = new BehaviourTreeNodeState
                 {
                     agent = this,
@@ -82,27 +83,26 @@ namespace AITools
                     actualCondition = processCondition.Stopped
                 };
                 nodes.Add(state);
-                states.Add(node.position,state);
+                states.Add(node.position, state);
                 if (node.isInput())
                 {
                     root = node as BehaviourTreeNode;
                 }
             }
-            BehaviourTreeNodeState rootState = nodes.Where(x => x.node == root).First();
-            StartCoroutine(root.routine(rootState));
+            StartThinking();
         }
 
-        void Update()
+        void StartThinking()
         {
-            if (sceneSelected != Selection.activeGameObject)
-            {
-                sceneSelected = Selection.activeGameObject;
-                if (sceneSelected == gameObject)
-                {
-                    BehaviourTree.selectedAgent = this;
-                }
-            }
-
+            BehaviourTreeNodeState rootState = nodes.Where(x => x.node == root).First();
+            coroutine = StartCoroutine(root.routine(rootState));
         }
+
+        public void Refresh()
+        {
+            StopCoroutine(coroutine);
+            StartThinking();
+        }
+
     }
 }

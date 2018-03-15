@@ -19,7 +19,7 @@ public class ListEmptyQueryNode : LeafNode
     protected override IEnumerator process(BehaviourTreeAgent agent)
     {
         BehaviourTreeNodeState state = stateForAgent(agent);
-        if (agent.listParameters[listToCheck].Count > 0)
+        if (agent.listParameters[listToCheck].Count == 0)
         {
             state.actualCondition = processCondition.Sucess;
         }

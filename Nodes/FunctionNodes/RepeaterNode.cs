@@ -9,7 +9,7 @@ namespace AITools
     public class RepeaterNode : DecoratorNode
     {
 
-        public const string ID = "repeaterNode";
+        public new const string ID = "repeaterNode";
         public override string GetID { get { return ID; } }
 
         public override string Title { get { return "Repeater Node"; } }

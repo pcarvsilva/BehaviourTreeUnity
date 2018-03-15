@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using NodeEditorFramework;
+using NodeEditorFramework.Standard;
+using NodeEditorFramework.Utilities;
 
 namespace AITools
 {
@@ -16,6 +19,14 @@ namespace AITools
         public override void OnInspectorGUI()
         {
             BehaviourTreeAgent agent = target as BehaviourTreeAgent;
+            if (NodeEditor.curNodeCanvas == null || NodeEditor.curNodeCanvas.savePath != agent.tree.savePath)
+            {
+                BehaviourTree.selectedAgent = agent;
+                NodeEditor.ReInit(false);
+                NodeCanvas c = NodeEditorSaveManager.CreateWorkingCopy(agent.tree);
+                NodeEditor.curNodeCanvas = c;
+                NodeEditorWindow.editor.canvasCache.SetCanvas(c);
+            }
             DrawDefaultInspector();
             if (agent.gameObjectParameters != null)
             {
