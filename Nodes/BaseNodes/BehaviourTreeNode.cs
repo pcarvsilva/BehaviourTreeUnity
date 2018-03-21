@@ -58,6 +58,11 @@ namespace AITools
             }
         }
 
+        public virtual void OnBreak(BehaviourTreeAgent agent)
+        {
+
+        }
+
         public override void NodeGUI()
         {
             GUILayout.BeginHorizontal();
@@ -71,7 +76,7 @@ namespace AITools
 
         }
 
-        protected override void DrawNode()
+        public override void DrawNode()
         {
             backgroundColor = BackgroundColor;
             base.DrawNode();
