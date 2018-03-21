@@ -20,17 +20,6 @@ namespace AITools
         public List<string> vector3Parameters;
         public List<string> listParameters;
 
-        protected override void OnCreate()
-        {
-            Traversal = new CanvasCalculator(this);
-        }
-
-        protected override void ValidateSelf()
-        {
-            if (Traversal == null)
-                Traversal = new CanvasCalculator(this);
-        }
-
         public enum variableType
         {
             Float,

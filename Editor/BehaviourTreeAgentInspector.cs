@@ -18,7 +18,9 @@ namespace AITools
 
         public override void OnInspectorGUI()
         {
+            DrawDefaultInspector();
             BehaviourTreeAgent agent = target as BehaviourTreeAgent;
+            if (agent.tree == null) return;
             if (NodeEditor.curNodeCanvas == null || NodeEditor.curNodeCanvas.savePath != agent.tree.savePath)
             {
                 BehaviourTree.selectedAgent = agent;
@@ -27,7 +29,6 @@ namespace AITools
                 NodeEditor.curNodeCanvas = c;
                 NodeEditorWindow.editor.canvasCache.SetCanvas(c);
             }
-            DrawDefaultInspector();
             if (agent.gameObjectParameters != null)
             {
                 objectFold = EditorGUILayout.Foldout(objectFold, "Game Objects");
